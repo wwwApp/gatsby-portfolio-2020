@@ -136,7 +136,7 @@
   }
 
   @include break($bp-sm) {
-    display: none;
+    display: none !important;
   }
 
   .c-global-header__contact {
