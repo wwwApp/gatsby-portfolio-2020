@@ -4,8 +4,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Card from "../components/card"
-
-import Fade from "react-reveal/Fade"
+import FadeIn from "react-fade-in"
 
 const Index = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -14,8 +13,8 @@ const Index = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
-      <Fade bottom>
+      <SEO title="Projects" />
+      <FadeIn transitionDuration={900}>
         <section
           id="about"
           className="about-wrapper"
@@ -43,7 +42,7 @@ const Index = ({ data, location }) => {
             return <Card key={node.slug} node={node} />
           })}
         </section>
-      </Fade>
+      </FadeIn>
     </Layout>
   )
 }

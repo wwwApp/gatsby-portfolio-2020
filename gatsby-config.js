@@ -10,7 +10,7 @@ module.exports = {
     description: `Wooyoung Song's portfolio site`,
     siteUrl: `http://wooyoungsong.com/`,
     contact: {
-      email: `wooyoung185@gmail.com`,
+      email: `mailto:wooyoung185@gmail.com`,
       github: `https://github.com/wwwApp`,
       linkedIn: `https://www.linkedin.com/in/wooyoung-song-661345136/`,
     },
@@ -55,7 +55,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#21ebc2`,
         display: `minimal-ui`,
-        icon: `static/images/logo.png`,
+        icon: `static/logo.png`,
       },
     },
     `gatsby-plugin-react-helmet`,

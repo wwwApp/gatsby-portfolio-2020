@@ -3,21 +3,20 @@ import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-
-import Fade from "react-reveal/Fade"
+import FadeIn from "react-fade-in"
 
 const NotFoundPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
-      <Fade bottom>
+      <SEO title="404" />
+      <FadeIn transitionDuration={900}>
         <section className="l-container" style={{ textAlign: `center` }}>
           <h1 className="f-title--lg">404</h1>
           <p className="f-subtitle">Ooops...</p>
         </section>
-      </Fade>
+      </FadeIn>
     </Layout>
   )
 }

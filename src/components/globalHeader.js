@@ -101,7 +101,7 @@ const GlobalHeader = () => {
         <h1 className="u-sr-only">{siteMeta.title}</h1>
         <Link className="c-global-header__logo" to="/">
           <span className="u-sr-only">Wooyoung Song Logo</span>
-          <img src="./../../static/images/logo.png" alt="Wooyoung Song Logo" />
+          <img src={`../../logo.png`} alt="Wooyoung Song Logo" />
         </Link>
         {contactEls()}
         <button

@@ -9,13 +9,18 @@ const Card = ({ node }) => {
       <div className="c-card__context">
         <h3 className="c-card__title f-title--sm">{title}</h3>
         <ul className="c-card__tags l-row">
-          {node.tags.map(tag => {
-            return (
-              <li key={`${title}-${tag}`} className="c-card__tags-item f-tag">
-                {tag}
-              </li>
-            )
-          })}
+          {node.tags
+            ? node.tags.map(tag => {
+                return (
+                  <li
+                    key={`${title}-${tag}`}
+                    className="c-card__tags-item f-tag"
+                  >
+                    {tag}
+                  </li>
+                )
+              })
+            : null}
         </ul>
       </div>
       <div className="c-card__image">

@@ -3,14 +3,14 @@ import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Fade from "react-reveal/Fade"
+import FadeIn from "react-fade-in"
 
 import Img from "gatsby-image"
 
 import { BLOCKS } from "@contentful/rich-text-types"
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 
-const ProjectPostTemplate = ({ data, pageContext, location }) => {
+const ProjectPostTemplate = ({ data, location }) => {
   const post = data.contentfulProject
   const siteTitle = data.site.siteMetadata.title
   // const { previous, next } = pageContext
@@ -35,12 +35,14 @@ const ProjectPostTemplate = ({ data, pageContext, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title={post.title} description={post.description} />
-      <Fade bottom>
+      <FadeIn transitionDuration={900}>
         <div className="project-header">
           <h1 className="project-header__title f-title--lg">{post.title}</h1>
-          <p className="project-header__desc f-title--sm--400">
-            {post.description}
-          </p>
+          {post.description ? (
+            <p className="project-header__desc f-title--sm--400">
+              {post.description}
+            </p>
+          ) : null}
           {/* <img alt={post.title} src={post.featuredImage.fluid.src} /> */}
           <Img title={post.title} fluid={post.featuredImage.fluid} />
         </div>
@@ -67,8 +69,9 @@ const ProjectPostTemplate = ({ data, pageContext, location }) => {
             </div>
           </div>
         </div>
+      </FadeIn>
 
-        {/* <nav>
+      {/* <nav>
         <ul
           style={{
             display: `flex`,
@@ -94,7 +97,6 @@ const ProjectPostTemplate = ({ data, pageContext, location }) => {
           </li>
         </ul>
       </nav> */}
-      </Fade>
     </Layout>
   )
 }
