@@ -1,50 +1,67 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+// import Card from "../components/card"
+import PageSection from "../components/pageSection"
 
-const BlogIndex = ({ data, location }) => {
+const Index = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allContentfulProject.edges
+  const about = data.allContentfulAbout.edges[0].node // always going to be one
+  let hoverNode = posts[0].node
 
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
-      <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
-        return (
-          <article key={node.fields.slug}>
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
+
+      <PageSection classAttr="about-wrapper">
+        <h2 className="u-sr-only">About</h2>
+        <h3 className="about__title f-title">{about.title}</h3>
+        <p className="f-subtitle">{about.body.body}</p>
+      </PageSection>
+
+      <PageSection classAttr="project-wrapper">
+        <h2 className="u-sr-only">Projects</h2>
+        <ul className="project-items">
+          {posts.map(({ node }) => {
+            return (
+              <li
+                key={node.slug}
+                className="project-item"
+                onMouseEnter={() => {
+                  hoverNode = node
                 }}
               >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
+                <Link className="project-item__link" to={node.slug}>
+                  <h3 className="f-title">{node.title}</h3>
+                  {/* <ul className="project-link">
+                  {node.tags.map(tag => {
+                    return (
+                      <li
+                        key={`${title}-${tag}`}
+                        className="c-card__tags-item f-tag"
+                      >
+                        {tag}
+                      </li>
+                    )
+                  })}
+                </ul> */}
                 </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </section>
-          </article>
-        )
-      })}
+              </li>
+            )
+          })}
+        </ul>
+        <div className="project-thumb" aria-hidden="true">
+          <img alt={hoverNode.title} src={hoverNode.featuredImage.fluid.src} />
+        </div>
+      </PageSection>
     </Layout>
   )
 }
 
-export default BlogIndex
+export default Index
 
 export const pageQuery = graphql`
   query {
@@ -53,17 +70,26 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allContentfulAbout {
       edges {
         node {
-          excerpt
-          fields {
-            slug
+          title
+          body {
+            body
           }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            description
+        }
+      }
+    }
+    allContentfulProject {
+      edges {
+        node {
+          title
+          slug
+          tags
+          featuredImage {
+            fluid {
+              src
+            }
           }
         }
       }

@@ -1,0 +1,64 @@
+//////////////////////////////////
+// Colors
+//////////////////////////////////
+$c-text: #2e3d3a;
+
+$c-purple--light: #f4eeff;
+
+//////////////////////////////////
+// General
+//////////////////////////////////
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-smoothing: antialiased;
+}
+
+body {
+  color: $c-text;
+  font-family: "Montserrat", sans-serif;
+}
+
+main {
+  display: flex !important;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: $c-text !important;
+}
+
+//////////////////////////////////
+// Header
+//////////////////////////////////
+.c-global-header {
+  z-index: 2;
+  display: flex;
+  position: fixed;
+  width: 100%;
+  max-width: 100rem;
+}
+
+.c-global-header__contact {
+  display: flex;
+}
+
+.c-global-header__contact__item {
+  padding: 0.5em 1em;
+}
+
+//////////////////////////////////
+// Footer
+//////////////////////////////////
+footer {
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+}
