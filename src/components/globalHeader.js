@@ -1,7 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 const GlobalHeader = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
+  const toggleModalVisible = () => {
+    setIsModalVisible(!isModalVisible)
+  }
+
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -87,23 +93,33 @@ const GlobalHeader = () => {
   const siteMeta = data.site.siteMetadata
   return (
     <>
-      <header className="l-container c-global-header">
+      <header
+        className={`l-container c-global-header ${
+          isModalVisible ? "is-open" : ""
+        }`}
+      >
         <h1 className="u-sr-only">{siteMeta.title}</h1>
         <Link className="c-global-header__logo" to="/">
           <span className="u-sr-only">Wooyoung Song Logo</span>
           <img src="./../../images/logo.png" alt="Wooyoung Song Logo" />
         </Link>
         {contactEls()}
-        <div className="modal-toggle">
-          <span className="modal-toggle__line"></span>
-          <span className="modal-toggle__line"></span>
-        </div>
+        <button
+          className={`modal-toggle ${isModalVisible ? "is-open" : ""}`}
+          onClick={toggleModalVisible}
+        >
+          <span className="u-sr-only">
+            {isModalVisible ? "Close" : "Open"} Modal
+          </span>
+          <span className="modal-toggle__line modal-toggle__line--1"></span>
+          <span className="modal-toggle__line modal-toggle__line--2"></span>
+        </button>
       </header>
       <section
         id="mobile-header-modal"
-        className="mobile-header-modal"
+        className={`mobile-header-modal ${isModalVisible ? "is-open" : ""}`}
         aria-label="mobile-header-modal-title"
-        aria-hidden={false}
+        aria-hidden={!isModalVisible}
       >
         <h1 className="u-sr-only">Mobile Header Modal</h1>
         {contactEls()}

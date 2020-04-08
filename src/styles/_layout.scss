@@ -1,7 +1,7 @@
 .l-container {
   max-width: 68rem;
   margin: 0 auto;
-  padding: 2rem 2rem;
+  padding: 2rem;
 
   @include break($bp-sm) {
     padding: 2rem 5rem;
