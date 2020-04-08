@@ -17,6 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 json
               }
               tags
+              referenceLink
               featuredImage {
                 fluid {
                   src

@@ -9,8 +9,10 @@
 }
 
 //////////////////////////////////
-// Mixins
+// Breakpoints
 //////////////////////////////////
+$bp-sm: 44rem;
+
 @mixin break($size) {
   @media screen and (min-width: $size) {
     @content;
@@ -22,3 +24,8 @@
     @content;
   }
 }
+
+//////////////////////////////////
+// Animation
+//////////////////////////////////
+$cubic: cubic-bezier(0.17, 0.67, 0.83, 0.67);
