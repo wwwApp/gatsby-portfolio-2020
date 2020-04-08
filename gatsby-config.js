@@ -1,8 +1,8 @@
-const dotenv = require("dotenv")
+// const dotenv = require("dotenv")
 
-if (process.env.NODE_ENV !== "production") {
-  dotenv.config()
-}
+// if (process.env.NODE_ENV !== "production") {
+//   dotenv.config()
+// }
 
 module.exports = {
   siteMetadata: {
@@ -70,7 +70,8 @@ module.exports = {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: `ewjadhe6fep9`,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        accessToken: `tOfrH7X7eggiGS06bkIaF1EweKVt34D18kfkkIHnBzQ`,
+        // accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
     `gatsby-plugin-sass`,

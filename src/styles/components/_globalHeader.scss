@@ -34,7 +34,8 @@
   height: 3rem;
 
   @include break($bp-sm) {
-    opacity: 0;
+    width: 4rem;
+    height: 4rem;
   }
 }
 

@@ -8,6 +8,9 @@ const Layout = ({ location, title, children }) => {
       style={{
         minHeight: `100vh`,
         position: `relative`,
+        display: `flex`,
+        flexDirection: `column`,
+        justifyContent: `space-between`,
       }}
     >
       <Header location={location} />
