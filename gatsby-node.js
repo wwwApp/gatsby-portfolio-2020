@@ -41,14 +41,16 @@ exports.createPages = async ({ graphql, actions }) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
     const next = index === 0 ? null : posts[index - 1].node
 
-    createPage({
-      path: post.node.slug,
-      component: projectPost,
-      context: {
-        slug: post.node.slug,
-        previous,
-        next,
-      },
-    })
+    if (post.node.justLink) {
+      createPage({
+        path: post.node.slug,
+        component: projectPost,
+        context: {
+          slug: post.node.slug,
+          previous,
+          next,
+        },
+      })
+    }
   })
 }
