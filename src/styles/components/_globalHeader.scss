@@ -51,8 +51,10 @@
 }
 
 .c-global-header__contact__item {
-  @include break($bp-sm) {
-    margin-right: 1.5rem;
+  &:not(:last-child) {
+    @include break($bp-sm) {
+      margin-right: 1.5rem;
+    }
   }
 
   &__icon {

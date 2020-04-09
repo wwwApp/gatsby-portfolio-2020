@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql, Link, withPrefix } from "gatsby"
 
 const GlobalHeader = () => {
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -87,6 +87,28 @@ const GlobalHeader = () => {
           </span>
         </a>
       </li>
+      <li className="c-global-header__contact__item c-global-header__contact__item--github">
+        <a
+          href={withPrefix("/resume.pdf")}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="c-global-header__contact__item__text u-sr-only">
+            resume
+          </span>
+          <span className="c-global-header__contact__item__icon">
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path d="M4 22v-20h16v11.543c0 4.107-6 2.457-6 2.457s1.518 6-2.638 6h-7.362zm18-7.614v-14.386h-20v24h10.189c3.163 0 9.811-7.223 9.811-9.614zm-5-1.386h-10v-1h10v1zm0-4h-10v1h10v-1zm0-3h-10v1h10v-1z" />
+            </svg>
+          </span>
+        </a>
+      </li>
     </ul>
   )
 
@@ -101,7 +123,7 @@ const GlobalHeader = () => {
         <h1 className="u-sr-only">{siteMeta.title}</h1>
         <Link className="c-global-header__logo" to="/">
           <span className="u-sr-only">Wooyoung Song Logo</span>
-          <img src={`../../logo.png`} alt="Wooyoung Song Logo" />
+          <img src={withPrefix("/logo.png")} alt="Wooyoung Song Logo" />
         </Link>
         {contactEls()}
         <button
