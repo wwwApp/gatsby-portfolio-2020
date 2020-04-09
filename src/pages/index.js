@@ -66,7 +66,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulProject {
+    allContentfulProject(sort: { fields: createdAt, order: DESC }) {
       edges {
         node {
           title

@@ -23,6 +23,7 @@ exports.createPages = async ({ graphql, actions }) => {
                   src
                 }
               }
+              justLink
             }
           }
         }
@@ -41,7 +42,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node
     const next = index === 0 ? null : posts[index - 1].node
 
-    if (post.node.justLink) {
+    if (!post.node.justLink) {
       createPage({
         path: post.node.slug,
         component: projectPost,
