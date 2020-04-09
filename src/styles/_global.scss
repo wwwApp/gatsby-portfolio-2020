@@ -72,3 +72,16 @@ footer {
     font-size: 1rem;
   }
 }
+
+//////////////////////////////////
+// Focus
+//////////////////////////////////
+.u-keyboard-user {
+  a,
+  button {
+    &:focus {
+      outline: solid 3px $c-hover !important;
+      outline-offset: 2px;
+    }
+  }
+}

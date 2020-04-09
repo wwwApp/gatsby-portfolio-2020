@@ -57,10 +57,16 @@
     }
   }
 
+  a {
+    display: block;
+  }
+
   &__icon {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 24px;
+    height: auto;
   }
 
   svg {

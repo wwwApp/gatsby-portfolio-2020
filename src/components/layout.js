@@ -1,7 +1,25 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Header from "./globalHeader"
 
 const Layout = ({ location, title, children }) => {
+  const detectKeyPress = e => {
+    if (e.keyCode === 9) {
+      document.body.classList.add("u-keyboard-user")
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", e => {
+      detectKeyPress(e)
+    })
+
+    return () => {
+      document.removeEventListener("keydown", e => {
+        detectKeyPress(e)
+      })
+    }
+  }, [])
+
   return (
     <div
       className="app-wrapper"

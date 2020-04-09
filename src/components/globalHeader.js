@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql, Link, withPrefix } from "gatsby"
 
 const GlobalHeader = () => {
@@ -7,6 +7,24 @@ const GlobalHeader = () => {
   const toggleModalVisible = () => {
     setIsModalVisible(!isModalVisible)
   }
+
+  const closeOnKeyPress = e => {
+    if (e.keyCode === 27 && !isModalVisible) {
+      setIsModalVisible(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", e => {
+      closeOnKeyPress(e)
+    })
+
+    return () => {
+      document.removeEventListener("keydown", e => {
+        closeOnKeyPress(e)
+      })
+    }
+  }, [])
 
   const data = useStaticQuery(graphql`
     query {
