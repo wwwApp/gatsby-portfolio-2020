@@ -14,14 +14,33 @@ const GlobalHeader = () => {
     }
   }
 
+  const focusOnBody = () => {
+    const lastFocusInModal = document.querySelector(
+      ".c-global-header__contact__item:last-child a"
+    )
+
+    // TO-DO: figure out why isModalVisible returns false
+    if (lastFocusInModal.isEqualNode(document.activeElement)) {
+      setIsModalVisible(false)
+    }
+  }
+
+  const handleModalFocus = e => {
+    if (e.keyCode === 9) {
+      focusOnBody()
+    }
+  }
+
   useEffect(() => {
     document.addEventListener("keydown", e => {
       closeOnKeyPress(e)
+      handleModalFocus(e)
     })
 
     return () => {
       document.removeEventListener("keydown", e => {
         closeOnKeyPress(e)
+        handleModalFocus(e)
       })
     }
   }, [])

@@ -15,6 +15,13 @@ const ProjectPostTemplate = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   // const { previous, next } = pageContext
 
+  const focusOnContact = () => {
+    document.body.classList.remove("scroll-down")
+    document
+      .querySelector(".c-global-header__contact__item:first-child a")
+      .focus()
+  }
+
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: node => {
@@ -65,7 +72,14 @@ const ProjectPostTemplate = ({ data, location }) => {
             <div>
               <Link href="/">View more projects</Link>
               <span> or </span>
-              <a href="#">contact me</a>
+              <a
+                href="#"
+                onClick={() => {
+                  focusOnContact()
+                }}
+              >
+                contact me
+              </a>
             </div>
           </div>
         </div>

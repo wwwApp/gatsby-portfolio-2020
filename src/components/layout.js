@@ -1,41 +1,50 @@
 import React, { useEffect } from "react"
 import Header from "./globalHeader"
 
-const Layout = ({ location, title, children }) => {
+const Layout = ({ location, children }) => {
   const body = document.body
-  const scrollUp = "scroll-up"
-  const scrollDown = "scroll-down"
+  const scrollUpClass = "scroll-up"
+  const scrollDownClass = "scroll-down"
   let lastScroll = 0
 
   const detectKeyPress = e => {
+    // detect keyboard user for util class
     if (e.keyCode === 9) {
       document.body.classList.add("u-keyboard-user")
     }
   }
 
   const toggleHeaderOnScroll = () => {
+    // calculate scroll
     const currentScroll = window.pageYOffset
-    if (currentScroll == 0) {
-      body.classList.remove(scrollUp)
+    if (currentScroll === 0) {
+      body.classList.remove(scrollUpClass)
       return
     }
 
-    if (currentScroll > lastScroll && !body.classList.contains(scrollDown)) {
+    if (
+      currentScroll > lastScroll &&
+      !body.classList.contains(scrollDownClass)
+    ) {
       // down
-      body.classList.remove(scrollUp)
-      body.classList.add(scrollDown)
+      body.classList.remove(scrollUpClass)
+      body.classList.add(scrollDownClass)
     } else if (
       currentScroll < lastScroll &&
-      body.classList.contains(scrollDown)
+      body.classList.contains(scrollDownClass)
     ) {
       // up
-      body.classList.remove(scrollDown)
-      body.classList.add(scrollUp)
+      body.classList.remove(scrollDownClass)
+      body.classList.add(scrollUpClass)
     }
     lastScroll = currentScroll
   }
 
   useEffect(() => {
+    // prevent possible scroll that will hide header on load
+    body.classList.remove(scrollDownClass)
+
+    // add events for keyboard user and reveal header
     document.addEventListener("keydown", e => {
       detectKeyPress(e)
     })
@@ -44,6 +53,7 @@ const Layout = ({ location, title, children }) => {
       toggleHeaderOnScroll()
     })
 
+    // remove events when unmonting the component
     return () => {
       document.removeEventListener("keydown", e => {
         detectKeyPress(e)
