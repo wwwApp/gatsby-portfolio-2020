@@ -133,37 +133,34 @@ const GlobalHeader = () => {
   const siteMeta = data.site.siteMetadata
   return (
     <>
-      <header
-        className={`l-container c-global-header ${
+      <header className={`c-global-header ${isModalVisible ? "is-open" : ""}`}>
+        <div className="l-container c-global-header__inner">
+          <h1 className="u-sr-only">{siteMeta.title}</h1>
+          <Link className="c-global-header__logo" to="/">
+            <span className="u-sr-only">Wooyoung Song Logo</span>
+            <img src={withPrefix("/logo.png")} alt="Wooyoung Song Logo" />
+          </Link>
+          {contactEls()}
+          <button
+            className={`modal-toggle ${isModalVisible ? "is-open" : ""}`}
+            onClick={toggleModalVisible}
+          >
+            <span className="u-sr-only">
+              {isModalVisible ? "Close" : "Open"} Modal
+            </span>
+            <span className="modal-toggle__line modal-toggle__line--1"></span>
+            <span className="modal-toggle__line modal-toggle__line--2"></span>
+          </button>
+        </div>
+      </header>
+      <div
+        className={`c-global-header__inner--modal ${
           isModalVisible ? "is-open" : ""
         }`}
-      >
-        <h1 className="u-sr-only">{siteMeta.title}</h1>
-        <Link className="c-global-header__logo" to="/">
-          <span className="u-sr-only">Wooyoung Song Logo</span>
-          <img src={withPrefix("/logo.png")} alt="Wooyoung Song Logo" />
-        </Link>
-        {contactEls()}
-        <button
-          className={`modal-toggle ${isModalVisible ? "is-open" : ""}`}
-          onClick={toggleModalVisible}
-        >
-          <span className="u-sr-only">
-            {isModalVisible ? "Close" : "Open"} Modal
-          </span>
-          <span className="modal-toggle__line modal-toggle__line--1"></span>
-          <span className="modal-toggle__line modal-toggle__line--2"></span>
-        </button>
-      </header>
-      <section
-        id="mobile-header-modal"
-        className={`mobile-header-modal ${isModalVisible ? "is-open" : ""}`}
-        aria-label="mobile-header-modal-title"
         aria-hidden={!isModalVisible}
       >
-        <h1 className="u-sr-only">Mobile Header Modal</h1>
         {contactEls()}
-      </section>
+      </div>
     </>
   )
 }
