@@ -80,7 +80,7 @@ footer {
   a,
   button {
     &:focus {
-      outline: solid 3px $c-hover !important;
+      outline: solid 3px $c-hover;
       outline-offset: 2px;
     }
   }

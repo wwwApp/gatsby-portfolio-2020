@@ -2,7 +2,6 @@ import React, { useEffect } from "react"
 import Header from "./globalHeader"
 
 const Layout = ({ location, children }) => {
-  const body = document.body
   const scrollUpClass = "scroll-up"
   const scrollDownClass = "scroll-down"
   let lastScroll = 0
@@ -15,6 +14,8 @@ const Layout = ({ location, children }) => {
   }
 
   const toggleHeaderOnScroll = () => {
+    const body = document.body
+
     // calculate scroll
     const currentScroll = window.pageYOffset
     if (currentScroll === 0) {
@@ -42,7 +43,7 @@ const Layout = ({ location, children }) => {
 
   useEffect(() => {
     // prevent possible scroll that will hide header on load
-    body.classList.remove(scrollDownClass)
+    document.body.classList.remove(scrollDownClass)
 
     // add events for keyboard user and reveal header
     document.addEventListener("keydown", e => {

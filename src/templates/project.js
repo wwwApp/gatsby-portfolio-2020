@@ -17,9 +17,7 @@ const ProjectPostTemplate = ({ data, location }) => {
 
   const focusOnContact = () => {
     document.body.classList.remove("scroll-down")
-    document
-      .querySelector(".c-global-header__contact__item:first-child a")
-      .focus()
+    document.querySelector(".c-global-header a").focus()
   }
 
   const options = {
