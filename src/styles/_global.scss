@@ -76,6 +76,13 @@ footer {
 //////////////////////////////////
 // Focus
 //////////////////////////////////
+a,
+button {
+  &:focus {
+    outline: none;
+  }
+}
+
 .u-keyboard-user {
   a,
   button {
