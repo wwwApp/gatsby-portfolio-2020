@@ -32,11 +32,13 @@
   }
 
   // reveal on scroll
-  .scroll-down & {
+  // .scroll-down & {
+  &.is-not-pinned {
     transform: translate3d(0, -100%, 0);
   }
 
-  .scroll-up & {
+  // .scroll-up & {
+  &.is-pinned {
     transform: none;
   }
 }

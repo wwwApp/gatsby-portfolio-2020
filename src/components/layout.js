@@ -51,7 +51,7 @@ const Layout = ({ location, children }) => {
     })
 
     window.addEventListener("scroll", () => {
-      toggleHeaderOnScroll()
+      // toggleHeaderOnScroll()
     })
 
     // remove events when unmonting the component
@@ -61,7 +61,7 @@ const Layout = ({ location, children }) => {
       })
 
       window.removeEventListener("scroll", () => {
-        toggleHeaderOnScroll()
+        // toggleHeaderOnScroll()
       })
     }
   }, [])
