@@ -35,7 +35,9 @@ const ProjectPostTemplate = ({ data, location }) => {
     },
   }
 
-  const postContentHtml = documentToHtmlString(post.body.json, options)
+  const postContentHtml = post.body
+    ? documentToHtmlString(post.body.json, options)
+    : null
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -62,7 +64,9 @@ const ProjectPostTemplate = ({ data, location }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              view case study
+              {post.referenceLinkText
+                ? post.referenceLinkText
+                : "view case study"}
             </a>
           ) : null}
           <div className="project-body__closing">
@@ -129,6 +133,7 @@ export const pageQuery = graphql`
         json
       }
       tags
+      referenceLinkText
       referenceLink
       featuredImage {
         fluid {
