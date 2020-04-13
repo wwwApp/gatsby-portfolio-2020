@@ -13,10 +13,11 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 const ProjectPostTemplate = ({ data, location }) => {
   const post = data.contentfulProject
   const siteTitle = data.site.siteMetadata.title
-  // const { previous, next } = pageContext
 
   const focusOnContact = () => {
-    document.body.classList.remove("scroll-down")
+    document
+      .querySelector(".c-global-header__inner")
+      .classList.remove("is-not-pinned")
     document.querySelector(".c-global-header a").focus()
   }
 
@@ -50,7 +51,6 @@ const ProjectPostTemplate = ({ data, location }) => {
               {post.description}
             </p>
           ) : null}
-          {/* <img alt={post.title} src={post.featuredImage.fluid.src} /> */}
           <Img title={post.title} fluid={post.featuredImage.fluid} />
         </div>
         <div className="project-body">
@@ -86,33 +86,6 @@ const ProjectPostTemplate = ({ data, location }) => {
           </div>
         </div>
       </FadeIn>
-
-      {/* <nav>
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link to={previous.slug} rel="prev">
-                ← {previous.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.slug} rel="next">
-                {next.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav> */}
     </Layout>
   )
 }
