@@ -13,13 +13,13 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-bottom: 5rem;
 
   .project-detail {
     flex: 0 0 100%;
 
     @include break($bp-sm) {
       flex: 0 0 33.3333%;
+      margin-bottom: 3rem;
     }
   }
 
