@@ -13,6 +13,9 @@ exports.createPages = async ({ graphql, actions }) => {
               title
               slug
               description
+              timeline
+              role
+              organization
               body {
                 json
               }

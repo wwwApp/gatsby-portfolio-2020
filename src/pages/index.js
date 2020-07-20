@@ -13,24 +13,24 @@ const Index = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="Projects" />
+      <SEO title="" />
       <FadeIn transitionDuration={900}>
         <section
           id="about"
           className="about-wrapper"
-          style={{ marginBottom: `5rem` }}
+          style={{ marginBottom: `7rem` }}
         >
           <h2 className="u-sr-only">About</h2>
           <div>
             <h3
-              className="about__title f-title--lg"
+              className="about__title f-title--sm"
               style={{
-                marginBottom: `2rem`,
+                marginBottom: `1.5em`,
               }}
             >
               {about.title}
             </h3>
-            <p className="f-subtitle" style={{ whiteSpace: `pre-line` }}>
+            <p className="f-tagline" style={{ whiteSpace: `pre-line` }}>
               {about.body.body}
             </p>
           </div>
@@ -66,7 +66,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulProject(sort: { fields: createdAt, order: DESC }) {
+    allContentfulProject(sort: { fields: date, order: DESC }) {
       edges {
         node {
           title
@@ -79,6 +79,8 @@ export const pageQuery = graphql`
           }
           justLink
           referenceLink
+          featured
+          inProgress
         }
       }
     }

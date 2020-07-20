@@ -9,6 +9,31 @@
   font-style: italic;
 }
 
+.project-body__top {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 5rem;
+
+  .project-detail {
+    flex: 0 0 100%;
+
+    @include break($bp-sm) {
+      flex: 0 0 33.3333%;
+    }
+  }
+
+  .project-detail:not(:last-child) {
+    padding-right: 2rem;
+  }
+
+  .project-detail__title {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: $c-text--gray;
+  }
+}
+
 .project-body {
   a {
     position: relative;
@@ -35,6 +60,12 @@
       }
     }
   }
+
+  ul,
+  ol {
+    list-style: initial;
+    margin-left: 20px;
+  }
 }
 
 .project-body__wysiwyg {
@@ -49,7 +80,7 @@
 
   img,
   video {
-    margin-top: 2rem;
+    margin: 2rem auto;
     width: 100%;
   }
 }

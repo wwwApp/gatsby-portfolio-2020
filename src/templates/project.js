@@ -7,7 +7,7 @@ import FadeIn from "react-fade-in"
 
 import Img from "gatsby-image"
 
-import { BLOCKS } from "@contentful/rich-text-types"
+import { BLOCKS, INLINES } from "@contentful/rich-text-types"
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
 
 const ProjectPostTemplate = ({ data, location }) => {
@@ -33,6 +33,11 @@ const ProjectPostTemplate = ({ data, location }) => {
           return `<img alt=${post.title} src="${node.data.target.fields.file["en-US"].url}" />`
         }
       },
+      [INLINES.HYPERLINK]: (node, next) => {
+        return `<a href="${
+          node.data.uri
+        }" rel="noopener noreferrer" target="_blank"}>${next(node.content)}</a>`
+      },
     },
   }
 
@@ -42,7 +47,7 @@ const ProjectPostTemplate = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title={post.title} description={post.description} />
+      <SEO title={`${post.title} |`} description={post.description} />
       <FadeIn transitionDuration={900}>
         <div className="project-header">
           <h1 className="project-header__title f-title--lg">{post.title}</h1>
@@ -54,6 +59,26 @@ const ProjectPostTemplate = ({ data, location }) => {
           <Img title={post.title} fluid={post.featuredImage.fluid} />
         </div>
         <div className="project-body">
+          <div className="project-body__top">
+            {post.organization && (
+              <div className="project-detail">
+                <p className="project-detail__title">Team</p>
+                <p className="project-detail__content">{post.organization}</p>
+              </div>
+            )}
+            {post.role && (
+              <div className="project-detail">
+                <p className="project-detail__title">Role</p>
+                <p className="project-detail__content">{post.role}</p>
+              </div>
+            )}
+            {post.timeline && (
+              <div className="project-detail">
+                <p className="project-detail__title">Timeline</p>
+                <p className="project-detail__content">{post.timeline}</p>
+              </div>
+            )}
+          </div>
           <div
             className="project-body__wysiwyg"
             dangerouslySetInnerHTML={{ __html: postContentHtml }}
@@ -102,6 +127,9 @@ export const pageQuery = graphql`
     contentfulProject(slug: { eq: $slug }) {
       title
       description
+      timeline
+      role
+      organization
       body {
         json
       }
