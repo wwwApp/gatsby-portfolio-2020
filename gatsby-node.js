@@ -4,7 +4,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const projectPost = path.resolve(`./src/templates/project.js`)
-  const result = await graphql(
+  const blogPost = path.resolve(`./src/templates/blog.js`)
+  const resultProject = await graphql(
     `
       {
         allContentfulProject {
@@ -35,16 +36,47 @@ exports.createPages = async ({ graphql, actions }) => {
     `
   )
 
-  if (result.errors) {
-    throw result.errors
+  const resultBlog = await graphql(
+    `
+      {
+        allContentfulBlog {
+          edges {
+            node {
+              title
+              slug
+              description
+              date
+              body {
+                json
+              }
+              tags
+              featuredImage {
+                fluid {
+                  src
+                }
+              }
+            }
+          }
+        }
+      }
+    `
+  )
+
+  if (resultProject.errors) {
+    throw resultProject.errors
   }
 
-  // Create project posts pages.
-  const posts = result.data.allContentfulProject.edges
+  if (resultBlog.errors) {
+    throw resultBlog.errors
+  }
 
-  posts.forEach((post, index) => {
-    const previous = index === posts.length - 1 ? null : posts[index + 1].node
-    const next = index === 0 ? null : posts[index - 1].node
+  // Create project projectPosts pages.
+  const projectPosts = resultProject.data.allContentfulProject.edges
+
+  projectPosts.forEach((post, index) => {
+    const previous =
+      index === projectPosts.length - 1 ? null : projectPosts[index + 1].node
+    const next = index === 0 ? null : projectPosts[index - 1].node
 
     if (!post.node.justLink) {
       createPage({
@@ -57,5 +89,24 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       })
     }
+  })
+
+  // create blog pages
+  const blogPosts = resultBlog.data.allContentfulBlog.edges
+
+  blogPosts.forEach((post, index) => {
+    const previous =
+      index === blogPosts.length - 1 ? null : blogPosts[index + 1].node
+    const next = index === 0 ? null : blogPosts[index - 1].node
+
+    createPage({
+      path: post.node.slug,
+      component: blogPost,
+      context: {
+        slug: post.node.slug,
+        previous,
+        next,
+      },
+    })
   })
 }

@@ -8,7 +8,8 @@ import FadeIn from "react-fade-in"
 
 const Index = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
-  const posts = data.allContentfulProject.edges
+  const projectPosts = data.allContentfulProject.edges
+  const blogPosts = data.allContentfulBlog.edges
   const about = data.allContentfulAbout.edges[0].node // always going to be one
 
   return (
@@ -37,8 +38,21 @@ const Index = ({ data, location }) => {
         </section>
 
         <section id="projects" className="cards-wrapper">
-          <h2 className="u-sr-only">Projects</h2>
-          {posts.map(({ node }) => {
+          <div className="cards-wrapper__title-wrapper">
+            <h2 className="cards-wrapper__title">Projects</h2>
+            <span className="title-div"></span>
+          </div>
+          {projectPosts.map(({ node }) => {
+            return <Card key={node.slug} node={node} />
+          })}
+        </section>
+
+        <section id="blog" className="cards-wrapper">
+          <div className="cards-wrapper__title-wrapper">
+            <h2 className="cards-wrapper__title">Journal</h2>
+            <span className="title-div"></span>
+          </div>
+          {blogPosts.map(({ node }) => {
             return <Card key={node.slug} node={node} />
           })}
         </section>
@@ -81,6 +95,21 @@ export const pageQuery = graphql`
           referenceLink
           featured
           inProgress
+        }
+      }
+    }
+    allContentfulBlog(sort: { fields: date, order: DESC }) {
+      edges {
+        node {
+          title
+          slug
+          tags
+          date
+          featuredImage {
+            fluid {
+              src
+            }
+          }
         }
       }
     }

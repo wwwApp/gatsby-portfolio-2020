@@ -39,6 +39,7 @@ const Card = ({ node }) => {
       <Link className="c-card" to={node.slug}>
         <div className="c-card__context">
           <h3 className="c-card__title f-title--sm">{title}</h3>
+
           <ul className="c-card__tags l-row">
             {node.tags
               ? node.tags.map(tag => {
@@ -53,6 +54,9 @@ const Card = ({ node }) => {
                 })
               : null}
           </ul>
+          {node.date ? (
+            <div className="c-card__date">{node.date.substring(0, 10)}</div>
+          ) : null}
         </div>
         <div className="c-card__image">
           <img alt={title} src={node.featuredImage.fluid.src} />

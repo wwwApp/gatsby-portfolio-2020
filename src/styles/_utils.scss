@@ -12,6 +12,7 @@
 // Breakpoints
 //////////////////////////////////
 $bp-sm: 44rem;
+$bp-md: 65rem;
 
 @mixin break($size) {
   @media screen and (min-width: $size) {
