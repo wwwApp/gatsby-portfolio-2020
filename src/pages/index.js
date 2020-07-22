@@ -14,7 +14,7 @@ const Index = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="" />
+      <SEO />
       <FadeIn transitionDuration={900}>
         <section
           id="about"

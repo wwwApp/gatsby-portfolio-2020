@@ -47,7 +47,7 @@ const ProjectPostTemplate = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title={`${post.title} |`} description={post.description} />
+      <SEO title={post.title} description={post.description} />
       <FadeIn transitionDuration={900}>
         <div className="project-header">
           <h1 className="project-header__title f-title--lg">{post.title}</h1>
