@@ -168,8 +168,9 @@ const GlobalHeader = () => {
         <div className="l-container c-global-header__inner" ref={headerRef}>
           <h1 className="u-sr-only">{siteMeta.title}</h1>
           <Link className="c-global-header__logo" to="/">
-            <span className="u-sr-only">Wooyoung Song Logo</span>
-            <img src={withPrefix("/logo.png")} alt="Wooyoung Song Logo" />
+            <div className="text-logo">ws.</div>
+            {/* <span className="u-sr-only">Wooyoung Song Logo</span> */}
+            {/* <img src={withPrefix("/logo.png")} alt="Wooyoung Song Logo" /> */}
           </Link>
           {contactEls()}
           <button

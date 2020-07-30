@@ -42,12 +42,17 @@
 }
 
 .c-global-header__logo {
-  width: 3rem;
-  height: 3rem;
+  // width: 3rem;
+  // height: 3rem;
 
-  @include break($bp-sm) {
-    width: 4rem;
-    height: 4rem;
+  // @include break($bp-sm) {
+  //   width: 4rem;
+  //   height: 4rem;
+  // }
+
+  .text-logo {
+    font-weight: 600;
+    font-size: 2rem;
   }
 }
 
