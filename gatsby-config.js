@@ -10,7 +10,7 @@ module.exports = {
     description: `Wooyoung Song's portfolio site`,
     siteUrl: `http://wooyoungsong.com/`,
     contact: {
-      email: `mailto:wooyoung185@gmail.com`,
+      email: `mailto:by.wsong@gmail.com`,
       github: `https://github.com/wwwApp`,
       linkedIn: `https://www.linkedin.com/in/wooyoung-song-661345136/`,
     },
