@@ -127,7 +127,7 @@ const GlobalHeader = () => {
       </li>
       <li className="c-global-header__contact__item c-global-header__contact__item--github">
         <a
-          href={withPrefix("/resume.pdf")}
+          href={withPrefix("/woo_song_resume.pdf")}
           target="_blank"
           rel="noopener noreferrer"
         >
