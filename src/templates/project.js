@@ -60,6 +60,16 @@ const ProjectPostTemplate = ({ data, location }) => {
         </div>
         <div className="project-body">
           <div className="project-body__top">
+            {post.tags && (
+              <div className="project-detail">
+                <p className="project-detail__title">Skills</p>
+                <ul className="project-detail__content">
+                  {post.tags.map(tag => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {post.organization && (
               <div className="project-detail">
                 <p className="project-detail__title">Team</p>
